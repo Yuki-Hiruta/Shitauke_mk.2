@@ -3,7 +3,7 @@
 Turret::Turret()
 {
     //マイコンに砲塔の諸元を送る
-    publisher_micon = this->create_publisher<std_msgs::msg::Float64MultiArray>("rogilink_flex", 100);
+    publisher_micon = this->create_publisher<std_msgs::msg::Float32MultiArray>("rogilink_flex", 100);
 
     //rogidriveに砲塔の諸元を送る
     publisher_odrive = this->create_publisher<rogidrive_msg::msg::RogidriveMessage>("odrive_cmd", 100);
@@ -32,7 +32,7 @@ void Turret::publish_turret(float _pitch, float _yaw){
     if(turret_drive_system == 1)
     {
         //Hiruta does not support HAL
-        auto message_micon = std_msgs::msg::Float64MultiArray();
+        auto message_micon = std_msgs::msg::Float32MultiArray();
         message_micon.data = {_pitch, _yaw};
         publisher_micon->publish(message_micon);
     }
