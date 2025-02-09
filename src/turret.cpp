@@ -31,6 +31,7 @@ void Turret::publish_turret(float _pitch, float _yaw){
     }
     if(turret_drive_system == 1)
     {
+        //Hiruta does not support HAL
         auto message_micon = std_msgs::msg::Float64MultiArray();
         message_micon.data = {_pitch, _yaw};
         publisher_micon->publish(message_micon);
